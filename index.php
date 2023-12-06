@@ -1,3 +1,6 @@
+<?php header("Location: auth/");
+exit(); ?>
+
 <!DOCTYPE html>
 <html lang="id">
 

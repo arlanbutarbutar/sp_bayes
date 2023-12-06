@@ -13,7 +13,6 @@ require_once("../templates/views_top.php"); ?>
   <!-- Content Row -->
   <div class="row">
 
-    <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
       <a href="users" class="text-decoration-none">
         <div class="card border-left-primary shadow h-100 py-2">
@@ -25,7 +24,7 @@ require_once("../templates/views_top.php"); ?>
                 <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $countUsers ?></div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                <i class="fas fa-users fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
@@ -33,7 +32,6 @@ require_once("../templates/views_top.php"); ?>
       </a>
     </div>
 
-    <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
       <a href="gejala" class="text-decoration-none">
         <div class="card border-left-success shadow h-100 py-2">
@@ -45,7 +43,7 @@ require_once("../templates/views_top.php"); ?>
                 <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $countGejala ?></div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                <i class="fas fa-list-ul fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
@@ -53,7 +51,6 @@ require_once("../templates/views_top.php"); ?>
       </a>
     </div>
 
-    <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
       <a href="penyakit" class="text-decoration-none">
         <div class="card border-left-info shadow h-100 py-2">
@@ -66,15 +63,10 @@ require_once("../templates/views_top.php"); ?>
                   <div class="col-auto">
                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= $countPenyakit ?></div>
                   </div>
-                  <div class="col">
-                    <div class="progress progress-sm mr-2">
-                      <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
                 </div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                <i class="fas fa-list-ul fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
@@ -82,7 +74,6 @@ require_once("../templates/views_top.php"); ?>
       </a>
     </div>
 
-    <!-- Pending Requests Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
       <a href="diagnosa" class="text-decoration-none">
         <div class="card border-left-warning shadow h-100 py-2">
@@ -94,7 +85,7 @@ require_once("../templates/views_top.php"); ?>
                 <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $countDiagnosa ?></div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                <i class="fas fa-user-md fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>

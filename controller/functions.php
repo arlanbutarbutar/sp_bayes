@@ -1305,12 +1305,6 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       ];
     }
 
-    if ($action == "update") {
-    }
-
-    if ($action == "delete") {
-    }
-
     // mysqli_query($conn, $sql);
     return mysqli_affected_rows($conn);
   }

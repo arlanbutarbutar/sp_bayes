@@ -138,6 +138,21 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
     }
   }
 
+  $select_usersCount = "SELECT * FROM users";
+  $countUsers = mysqli_query($conn, $select_usersCount);
+  $countUsers = mysqli_num_rows($countUsers);
+  $select_gejalaCount = "SELECT * FROM gejala";
+  $countGejala = mysqli_query($conn, $select_gejalaCount);
+  $countGejala = mysqli_num_rows($countGejala);
+  $select_penyakitCount = "SELECT * FROM penyakit";
+  $countPenyakit = mysqli_query($conn, $select_penyakitCount);
+  $countPenyakit = mysqli_num_rows($countPenyakit);
+  $select_diagnosaCount = "SELECT * FROM diagnosa";
+  $countDiagnosa = mysqli_query($conn, $select_diagnosaCount);
+  $countDiagnosa = mysqli_num_rows($countDiagnosa);
+  $select_diagnosaData = "SELECT * FROM diagnosa";
+  $dataDiagnosa = mysqli_query($conn, $select_diagnosaData);
+
   $select_users = "SELECT users.*, user_role.role, user_status.status 
                     FROM users
                     JOIN user_role ON users.id_role=user_role.id_role 
@@ -529,11 +544,11 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       exit();
     }
   }
-if (isset($_POST["reset-diagnosa"])) {
-  unset($_SESSION['data-diagnosa']);
-  header("Location: diagnosa");
-  exit();
-}
+  if (isset($_POST["reset-diagnosa"])) {
+    unset($_SESSION['data-diagnosa']);
+    header("Location: diagnosa");
+    exit();
+  }
 
   $select_solusi = "SELECT solusi.*, jenis_tanaman.nama_tanaman, penyakit.kode_penyakit, penyakit.nama_penyakit 
                       FROM solusi 

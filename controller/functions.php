@@ -59,6 +59,29 @@ function compressImage($source, $destination, $quality)
   return $destination;
 }
 
+function kontak($conn, $data, $action)
+{
+  if ($action == "insert") {
+    $sql = "INSERT INTO kontak(nama,email,phone,subject,pesan) VALUES('$data[nama]','$data[email]','$data[phone]','$data[subject]','$data[pesan]')";
+  }
+
+  mysqli_query($conn, $sql);
+  return mysqli_affected_rows($conn);
+}
+
+function diagnosa($conn, $data, $action)
+{
+  if ($action == "insert") {
+    $_SESSION['data-diagnosa'] = [
+      'akses' => $data['id_akuisisi'],
+      'gejala' => $data['checklist']
+    ];
+  }
+
+  // mysqli_query($conn, $sql);
+  return mysqli_affected_rows($conn);
+}
+
 if (!isset($_SESSION["project_sp_bayes"]["users"])) {
   function register($conn, $data, $action)
   {
@@ -729,7 +752,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       } else if (empty($_FILE['image']["name"])) {
         $image = $data['imageOld'];
       }
-      $sql = "UPDATE auth SET image='$image'";
+      $sql = "UPDATE auth SET image='$image', bg='$data[bg]'";
     }
 
     mysqli_query($conn, $sql);
@@ -1296,16 +1319,13 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
     return mysqli_affected_rows($conn);
   }
 
-  function diagnosa($conn, $data, $action)
+  function tentang($conn, $data, $action)
   {
-    if ($action == "insert") {
-      $_SESSION['data-diagnosa'] = [
-        'akses' => $data['id_akuisisi'],
-        'gejala' => $data['checklist']
-      ];
+    if ($action == "update") {
+      $sql = "UPDATE tentang SET deskripsi='$data[deskripsi]'";
     }
 
-    // mysqli_query($conn, $sql);
+    mysqli_query($conn, $sql);
     return mysqli_affected_rows($conn);
   }
 

@@ -246,15 +246,6 @@ require_once("../templates/views_top.php"); ?>
                 echo "</td></tr>";
               }
               echo "</tbody></table>";
-
-              $select_diganosa = "SELECT * FROM diagnosa ORDER BY id_diagnosa DESC LIMIT 1";
-              $views_diagnosa = mysqli_query($conn, $select_diganosa);
-              if (mysqli_num_rows($views_diagnosa) > 0) {
-                $dataDiagnosa = mysqli_fetch_assoc($views_diagnosa);
-                $id_diagnosa = $dataDiagnosa['id_diagnosa'] + 1;
-              } else {
-                $id_diagnosa = 1;
-              }
               mysqli_query($conn, "INSERT INTO diagnosa(id_diagnosa,penyakit,nilai) VALUES('$id_diagnosa','$diagnosis','$highestProbability')");
               foreach ($gejalas as $gejala) {
                 mysqli_query($conn, "INSERT INTO diagnosa_gejala(id_diagnosa,id_gejala) VALUES('$id_diagnosa','$gejala')");

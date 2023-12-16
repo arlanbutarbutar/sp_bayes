@@ -1,7 +1,7 @@
 <footer class="sticky-footer bg-white">
 <div class="container my-auto">
   <div class="copyright text-center my-auto">
-    <span>Copyright &copy; <a href="https://wasd.netmedia-framecode.com" class="text-decoration-none">WASD Netmedia Framecode</a> <?= date('Y') ?> | Develop by name_client</span>
+    <span>Copyright &copy; <a href="https://wasd.netmedia-framecode.com" class="text-decoration-none">WASD Netmedia Framecode</a> <?= date('Y') ?> | Develop by juliane ivy</span>
   </div>
 </div>
 </footer>
@@ -80,4 +80,8 @@ $('.custom-file-input').on('change', function() {
   let fileName = $(this).val().split('\\').pop();
   $(this).next('.custom-file-label').addClass("selected").html(fileName);
 });
+</script>
+
+<script>
+  CKEDITOR.replace('deskripsi');
 </script>

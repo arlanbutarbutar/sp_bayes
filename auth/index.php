@@ -35,6 +35,9 @@ require_once("../templates/auth_top.php"); ?>
                 <a class="small" href="forgot-password">Lupa Password?</a> <span>|</span>
                 <a class="small" href="register">Buat sebuah akun!</a>
               </div>
+              <div class="text-center">
+                <a class="small" href="../">Kembali ke beranda!</a>
+              </div>
             </div>
           </div>
         </div>

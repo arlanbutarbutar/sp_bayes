@@ -3,7 +3,7 @@
 }
 error_reporting(~E_NOTICE & ~E_DEPRECATED);
 require_once("db_connect.php");
-require_once("../models/sql.php");
+require_once(__DIR__ . "/../models/sql.php");
 require_once("functions.php");
 
 $messageTypes = ["success", "info", "warning", "danger", "dark"];
@@ -13,6 +13,48 @@ $name_website = "SP Bayes";
 
 $select_auth = "SELECT * FROM auth";
 $views_auth = mysqli_query($conn, $select_auth);
+$count_gejala = "SELECT * FROM gejala";
+$count_gejala = mysqli_query($conn, $count_gejala);
+$counts_gejala = mysqli_num_rows($count_gejala);
+$count_penyakit = "SELECT * FROM penyakit";
+$count_penyakit = mysqli_query($conn, $count_penyakit);
+$counts_penyakit = mysqli_num_rows($count_penyakit);
+$count_diagnosa = "SELECT * FROM diagnosa";
+$count_diagnosa = mysqli_query($conn, $count_diagnosa);
+$counts_diagnosa = mysqli_num_rows($count_diagnosa);
+$select_diagnosa = "SELECT * FROM tentang ORDER BY id DESC LIMIT 1";
+$views_diagnosa = mysqli_query($conn, $select_diagnosa);
+$tentang = mysqli_query($conn, "SELECT * FROM tentang");
+$hasil_diagnosa = mysqli_query($conn, "SELECT * FROM akuisisi WHERE nama_table LIKE '%probabilitas%'");
+if (isset($_POST["diagnosa_gejala"])) {
+  if (diagnosa($conn, $_POST, $action = "insert") > 0) {
+    $_SESSION["message-success"] = "Berhasil di diagnosa silakan lihat hasilnya";
+    $_SESSION["time-message"] = time();
+    header("Location: diagnosa");
+    exit();
+  }
+}
+if (isset($_POST["reset-diagnosa"])) {
+  unset($_SESSION['data-diagnosa']);
+  header("Location: diagnosa");
+  exit();
+}
+
+if (isset($_POST["kontak"])) {
+  $validated_post = array_map(function ($value) use ($conn) {
+    return valid($conn, $value);
+  }, $_POST);
+  if (kontak($conn, $validated_post, $action = 'insert') > 0) {
+    $message = "Pesan yang anda kirim berhasil kami terima dengan baik. Terima kasih atas masukan dan pertanyaan dari Anda, kami balas secepat mungkin.";
+    $message_type = "success";
+    alert($message, $message_type);
+    header("Location: kontak");
+    exit();
+  }
+}
+
+$select_diagnosaData = "SELECT * FROM diagnosa";
+$dataDiagnosa = mysqli_query($conn, $select_diagnosaData);
 
 if (!isset($_SESSION["project_sp_bayes"]["users"])) {
   if (isset($_SESSION["project_sp_bayes"]["time_message"]) && (time() - $_SESSION["project_sp_bayes"]["time_message"]) > 2) {
@@ -150,8 +192,6 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
   $select_diagnosaCount = "SELECT * FROM diagnosa";
   $countDiagnosa = mysqli_query($conn, $select_diagnosaCount);
   $countDiagnosa = mysqli_num_rows($countDiagnosa);
-  $select_diagnosaData = "SELECT * FROM diagnosa";
-  $dataDiagnosa = mysqli_query($conn, $select_diagnosaData);
 
   $select_users = "SELECT users.*, user_role.role, user_status.status 
                     FROM users
@@ -328,7 +368,6 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
   $views_user_access_menu = mysqli_query($conn, $select_user_access_menu);
   $select_menu_check = "SELECT user_menu.* 
                     FROM user_menu 
-                    JOIN user_access_menu ON user_access_menu.id_menu=user_menu.id_menu 
                     ORDER BY user_menu.menu ASC
                   ";
   $views_menu_check = mysqli_query($conn, $select_menu_check);
@@ -780,4 +819,19 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       exit();
     }
   }
+
+  if (isset($_POST["edit_tentang"])) {
+    if (tentang($conn, $_POST, $action = 'update') > 0) {
+      $message = "Data tentang berhasil diubah.";
+      $message_type = "success";
+      alert($message, $message_type);
+      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
+      $to_page = str_replace(" ", "-", $to_page);
+      header("Location: $to_page");
+      exit();
+    }
+  }
+
+  $select_kontak = "SELECT * FROM kontak";
+  $views_kontak = mysqli_query($conn, $select_kontak);
 }

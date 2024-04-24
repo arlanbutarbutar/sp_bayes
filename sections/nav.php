@@ -41,6 +41,8 @@
       <a href="<?= $baseURL ?>" class="nav-item nav-link">Beranda</a>
       <a href="<?= $baseURL ?>tentang" class="nav-item nav-link">Tentang</a>
       <a href="<?= $baseURL ?>hasil-diagnosa" class="nav-item nav-link">Hasil Diagnosa</a>
+      <a href="<?= $baseURL ?>obat" class="nav-item nav-link">Obat</a>
+      <a href="<?= $baseURL ?>solusi" class="nav-item nav-link">Solusi</a>
       <a href="<?= $baseURL ?>kontak" class="nav-item nav-link">Kontak</a>
     </div>
     <a href="<?= $baseURL ?>diagnosa" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Diagnosa<i class="fa fa-arrow-right ms-3"></i></a>

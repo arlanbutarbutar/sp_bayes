@@ -26,6 +26,8 @@ $select_diagnosa = "SELECT * FROM tentang ORDER BY id DESC LIMIT 1";
 $views_diagnosa = mysqli_query($conn, $select_diagnosa);
 $tentang = mysqli_query($conn, "SELECT * FROM tentang");
 $hasil_diagnosa = mysqli_query($conn, "SELECT * FROM akuisisi WHERE nama_table LIKE '%probabilitas%'");
+$obat = mysqli_query($conn, "SELECT * FROM obat JOIN penyakit ON obat.id_penyakit=penyakit.id_penyakit");
+$solusi = mysqli_query($conn, "SELECT * FROM solusi JOIN penyakit ON solusi.id_penyakit=penyakit.id_penyakit");
 if (isset($_POST["diagnosa_gejala"])) {
   if (diagnosa($conn, $_POST, $action = "insert") > 0) {
     $_SESSION["message-success"] = "Berhasil di diagnosa silakan lihat hasilnya";

@@ -150,7 +150,7 @@ require_once("../templates/views_top.php"); ?>
                   </h2>
                 </div>
 
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                   <div class="card-body table-responsive">
                     <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
                       <thead>
@@ -226,7 +226,7 @@ require_once("../templates/views_top.php"); ?>
                   </h2>
                 </div>
 
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                   <div class="card-body table-responsive">
                     <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
                       <thead>

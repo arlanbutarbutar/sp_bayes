@@ -1265,7 +1265,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $_SESSION['data-accordian'] = ['akses' => $data['id_akuisisi']];
     }
 
-    // mysqli_query($conn, $sql);
+    mysqli_query($conn, $sql);
     return mysqli_affected_rows($conn);
   }
 

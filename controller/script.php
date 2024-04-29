@@ -161,9 +161,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Profil Anda berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: profil");
       exit();
     }
   }
@@ -175,9 +173,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Setting pada system login berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: setting");
       exit();
     }
   }
@@ -211,9 +207,19 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "data users berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: users");
+      exit();
+    }
+  }
+  if (isset($_POST["delete_users"])) {
+    $validated_post = array_map(function ($value) use ($conn) {
+      return valid($conn, $value);
+    }, $_POST);
+    if (users($conn, $validated_post, $action = 'delete') > 0) {
+      $message = "data users berhasil diubah.";
+      $message_type = "success";
+      alert($message, $message_type);
+      header("Location: users");
       exit();
     }
   }
@@ -225,9 +231,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Role baru berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: role");
       exit();
     }
   }
@@ -239,9 +243,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Role " . $_POST['roleOld'] . " berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: role");
       exit();
     }
   }
@@ -253,9 +255,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Role " . $_POST['role'] . " berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: role");
       exit();
     }
   }
@@ -273,9 +273,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Menu baru berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: menu");
       exit();
     }
   }
@@ -287,9 +285,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Menu " . $_POST['menuOld'] . " berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: menu");
       exit();
     }
   }
@@ -301,9 +297,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Menu " . $_POST['menu'] . " berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: menu");
       exit();
     }
   }
@@ -327,9 +321,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Sub Menu baru berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: sub-menu");
       exit();
     }
   }
@@ -341,9 +333,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Sub Menu " . $_POST['titleOld'] . " berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: sub-menu");
       exit();
     }
   }
@@ -355,9 +345,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Sub Menu " . $_POST['title'] . " berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: sub-menu");
       exit();
     }
   }
@@ -381,9 +369,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Akses ke menu berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: menu-access");
       exit();
     }
   }
@@ -395,9 +381,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Akses menu " . $_POST['menu'] . " berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: menu-access");
       exit();
     }
   }
@@ -409,9 +393,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Akses menu " . $_POST['menu'] . " berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: menu-access");
       exit();
     }
   }
@@ -435,9 +417,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Akses ke sub menu berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: sub-menu-access");
       exit();
     }
   }
@@ -449,9 +429,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Akses sub menu " . $_POST['title'] . " berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: sub-menu-access");
       exit();
     }
   }
@@ -463,9 +441,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Akses sub menu " . $_POST['title'] . " berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: sub-menu-access");
       exit();
     }
   }
@@ -485,9 +461,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Gejala berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: gejala");
       exit();
     }
   }
@@ -499,9 +473,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data gejala berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: gejala");
       exit();
     }
   }
@@ -513,9 +485,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data gejala berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: gejala");
       exit();
     }
   }
@@ -535,9 +505,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Penyakit berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: penyakit");
       exit();
     }
   }
@@ -549,10 +517,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data penyakit berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
-      exit();
+      header("Location: penyakit");
     }
   }
   if (isset($_POST["delete_penyakit"])) {
@@ -563,9 +528,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data penyakit berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: penyakit");
       exit();
     }
   }
@@ -579,9 +542,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Berhasil di diagnosa silakan lihat hasilnya";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: diagnosa");
       exit();
     }
   }
@@ -606,9 +567,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Solusi berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: solusi");
       exit();
     }
   }
@@ -620,9 +579,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data solusi berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: solusi");
       exit();
     }
   }
@@ -634,9 +591,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data solusi berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: solusi");
       exit();
     }
   }
@@ -651,9 +606,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Obat berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: obat");
       exit();
     }
   }
@@ -665,9 +618,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data obat berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: obat");
       exit();
     }
   }
@@ -679,9 +630,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data obat berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: obat");
       exit();
     }
   }
@@ -701,9 +650,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Pencegahan berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: pencegahan");
       exit();
     }
   }
@@ -715,9 +662,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data pencegahan berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: pencegahan");
       exit();
     }
   }
@@ -729,9 +674,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data pencegahan berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: pencegahan");
       exit();
     }
   }
@@ -746,9 +689,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Nilai akuisisi berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: nilai-akuisisi");
       exit();
     }
   }
@@ -760,9 +701,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data nilai akuisisi berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: nilai-akuisisi");
       exit();
     }
   }
@@ -777,9 +716,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Akuisisi berhasil ditambahkan.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: akuisisi");
       exit();
     }
   }
@@ -788,9 +725,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data akuisisi berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page?to=list");
+      header("Location: akuisisi?to=list");
       exit();
     }
   }
@@ -802,9 +737,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data akuisisi berhasil dihapus.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: akuisisi");
       exit();
     }
   }
@@ -815,9 +748,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data probabilitas berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page?to=probabilitas");
+      header("Location: akuisisi?to=probabilitas");
       exit();
     }
   }
@@ -827,9 +758,7 @@ if (isset($_SESSION["project_sp_bayes"]["users"])) {
       $message = "Data tentang berhasil diubah.";
       $message_type = "success";
       alert($message, $message_type);
-      $to_page = strtolower($_SESSION["project_sp_bayes"]["name_page"]);
-      $to_page = str_replace(" ", "-", $to_page);
-      header("Location: $to_page");
+      header("Location: tentang");
       exit();
     }
   }

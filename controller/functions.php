@@ -62,7 +62,7 @@ function compressImage($source, $destination, $quality)
 function kontak($conn, $data, $action)
 {
   if ($action == "insert") {
-    $sql = "INSERT INTO kontak(nama,email,phone,subject,pesan) VALUES('$data[nama]','$data[email]','$data[phone]','$data[subject]','$data[pesan]')";
+    $sql = "INSERT INTO kontak(username,email,phone,subject,pesan) VALUES('$data[nama]','$data[email]','$data[phone]','$data[subject]','$data[pesan]')";
   }
 
   mysqli_query($conn, $sql);

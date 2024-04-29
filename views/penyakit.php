@@ -98,31 +98,33 @@ require_once("../templates/views_top.php"); ?>
                       </div>
                     </div>
                   </div>
-                  <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $row['id_penyakit'] ?>">
-                    <i class="bi bi-trash3"></i> Hapus
-                  </button>
-                  <div class="modal fade" id="hapus<?= $row['id_penyakit'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header border-bottom-0 shadow">
-                          <h5 class="modal-title" id="exampleModalLabel">Hapus <?= $row['nama_penyakit'] ?></h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                  <?php if ($id_role <= 2) { ?>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?= $row['id_penyakit'] ?>">
+                      <i class="bi bi-trash3"></i> Hapus
+                    </button>
+                    <div class="modal fade" id="hapus<?= $row['id_penyakit'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header border-bottom-0 shadow">
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus <?= $row['nama_penyakit'] ?></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <form action="" method="post">
+                            <input type="hidden" name="id_penyakit" value="<?= $row['id_penyakit'] ?>">
+                            <div class="modal-body">
+                              <p>Jika anda yakin ingin menghapus data ini klik Hapus!</p>
+                            </div>
+                            <div class="modal-footer justify-content-center border-top-0">
+                              <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
+                              <button type="submit" name="delete_penyakit" class="btn btn-danger btn-sm">hapus</button>
+                            </div>
+                          </form>
                         </div>
-                        <form action="" method="post">
-                          <input type="hidden" name="id_penyakit" value="<?= $row['id_penyakit'] ?>">
-                          <div class="modal-body">
-                            <p>Jika anda yakin ingin menghapus data ini klik Hapus!</p>
-                          </div>
-                          <div class="modal-footer justify-content-center border-top-0">
-                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
-                            <button type="submit" name="delete_penyakit" class="btn btn-danger btn-sm">hapus</button>
-                          </div>
-                        </form>
                       </div>
                     </div>
-                  </div>
+                  <?php } ?>
                 </td>
               </tr>
           <?php $no++;

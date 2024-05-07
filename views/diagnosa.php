@@ -215,8 +215,14 @@ require_once("../templates/views_top.php"); ?>
               // Normalisasi Probabilitas Total
               $normalizedProbabilities = [];
               foreach ($conditions as $condition) {
-                $normalizedProbabilities[$condition] = $totalProbabilities[$condition] / $totalSum;
+                if ($totalSum != 0) {
+                  $normalizedProbabilities[$condition] = $totalProbabilities[$condition] / $totalSum;
+                } else {
+                  $normalizedProbabilities[$condition] = 0;
+                }
               }
+              var_dump($normalizedProbabilities);
+
               // Tentukan Diagnosa
               $diagnosis = "";
               $highestProbability = 0;
@@ -336,13 +342,11 @@ require_once("../templates/views_top.php"); ?>
                   <h3 class='mt-4' style="line-height: 30px;">Penyakit <?= $diagnosis . " " . round($highestProbability) . "%" ?> Dengan Evaluasi Nilai Tertinggi</h3>
                   <p style="font-size: 16px;"><strong>Solusi</strong> dari penyakit ini yaitu <?php $solusi = mysqli_query($conn, "SELECT * FROM penyakit JOIN solusi ON penyakit.id_penyakit=solusi.id_penyakit WHERE penyakit.nama_penyakit='$diagnosis'");
                                                                                               $rowSolusi = mysqli_fetch_assoc($solusi);
-                                                                                              echo $rowSolusi['solusi']; ?></p>
-                  <p style="font-size: 16px;"><strong>Pencegahan</strong> dari penyakit ini yaitu <?php $pencegahan = mysqli_query($conn, "SELECT * FROM penyakit JOIN pencegahan ON penyakit.id_penyakit=pencegahan.id_penyakit WHERE penyakit.nama_penyakit='$diagnosis'");
-                                                                                                  $rowSolusi = mysqli_fetch_assoc($pencegahan);
-                                                                                                  echo $rowSolusi['pencegahan']; ?></p>
-                  <p style="font-size: 16px;"><strong>Obat</strong> yang dapat digunakan yaitu <?php $obat = mysqli_query($conn, "SELECT * FROM penyakit JOIN obat ON penyakit.id_penyakit=obat.id_penyakit WHERE penyakit.nama_penyakit='$diagnosis'");
-                                                                                                $rowSolusi = mysqli_fetch_assoc($obat);
-                                                                                                echo $rowSolusi['obat']; ?></p>
+                                                                                              echo $rowSolusi['solusi']; ?>. <strong>Pencegahan</strong> berupa <?php $pencegahan = mysqli_query($conn, "SELECT * FROM penyakit JOIN pencegahan ON penyakit.id_penyakit=pencegahan.id_penyakit WHERE penyakit.nama_penyakit='$diagnosis'");
+                                                                                                                                                                $rowSolusi = mysqli_fetch_assoc($pencegahan);
+                                                                                                                                                                echo $rowSolusi['pencegahan']; ?>. <strong>Obat</strong> yang dapat digunakan <?php $obat = mysqli_query($conn, "SELECT * FROM penyakit JOIN obat ON penyakit.id_penyakit=obat.id_penyakit WHERE penyakit.nama_penyakit='$diagnosis'");
+                                                                                                                                                                                                                                                              $rowSolusi = mysqli_fetch_assoc($obat);
+                                                                                                                                                                                                                                                              echo $rowSolusi['obat']; ?></p>
                   <form action="" method="post">
                     <button type="submit" name="reset-diagnosa" class="btn btn-primary text-white mt-4"><i class="mdi mdi-reload"></i> Reset</button>
                   </form>
